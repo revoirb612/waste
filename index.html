@@ -18,8 +18,8 @@ function saveText() {
         success: function(response) {
             alert('Data saved successfully');
         },
-        error: function(response) {
-            alert('Error: ' + response.responseJSON.error);
+        error: function(xhr, status, error) {
+            alert('Error: ' + xhr.responseText);
         }
     });
 }
