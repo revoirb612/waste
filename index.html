@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Save User Text</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function saveText() {
+    var userName = $('#name').val();
+    var userText = $('#text').val();
+
+    $.ajax({
+        url: 'https://revoirb612.pythonanywhere.com/usertext',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ name: userName, text: userText }),
+        success: function(response) {
+            alert('Data saved successfully');
+        },
+        error: function(response) {
+            alert('Error: ' + response.responseJSON.error);
+        }
+    });
+}
+</script>
+</head>
+<body>
+<h1>Save Text Data</h1>
+<form onsubmit="event.preventDefault(); saveText();">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="text">Text:</label><br>
+    <textarea id="text" name="text" required></textarea><br><br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
